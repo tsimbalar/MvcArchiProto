@@ -16,14 +16,27 @@ namespace WebApp.Experimentations.Tuyauterie
         {
             if (command == null) throw new ArgumentNullException("command");
 
+            // TODO : this cast here works ... but it feels wrong ...
+            TCommand castedCommand;
+            try
+            {
+                castedCommand = (TCommand)command;
+            }
+            catch (InvalidCastException ex)
+            {
+                throw new CommandDispatcherInvalidTypeException(
+                    string.Format("Could not cast the command (of type {0}) to type {1}.\nFor this to work, the command passed to this method should be something like : public class FooCommand : ICommand<FooCommand, FooResponse>. The type is itself the first Type argument...", command.GetType(), typeof(TCommand)), ex);
+            }
+
             var service = _registry.GetService<TCommand, TResponse>();
             if (service == null)
             {
                 throw new CommandDispatcherServiceNotFoundException(string.Format("could not find service for command of type {0}",
-                                                                 command.GetType()));
+                                                                 typeof(TCommand)));
             }
 
-            return service.Execute(command.Self);
+            
+            return service.Execute(castedCommand);
         }
     }
 }

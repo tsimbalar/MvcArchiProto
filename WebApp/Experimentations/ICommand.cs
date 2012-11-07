@@ -5,6 +5,5 @@ namespace WebApp.Experimentations
     /// </summary>S
     public interface ICommand<TRequest, TResponse>
     {
-        TRequest Self { get;  }
     }
 }

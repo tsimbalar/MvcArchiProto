@@ -8,5 +8,9 @@ namespace WebApp.Experimentations
             : base(message)
         {
         }
+
+        protected CommandDispatcherException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
     }
 }

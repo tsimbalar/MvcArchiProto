@@ -177,6 +177,7 @@
     <Compile Include="Experimentations\Commands\Capitalize.cs" />
     <Compile Include="Experimentations\ICommand.cs" />
     <Compile Include="Experimentations\Services\LowerCaseService.cs" />
+    <Compile Include="Experimentations\CommandDispatcherInvalidTypeException.cs" />
     <Compile Include="Experimentations\Tuyauterie\UnityServiceRegistry.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
