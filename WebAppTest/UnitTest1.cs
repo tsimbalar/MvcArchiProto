@@ -1,10 +1,7 @@
 ﻿using System;
 using Microsoft.Practices.Unity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Ploeh.AutoFixture;
-using Ploeh.AutoFixture.AutoRhinoMock;
 using Rhino.Mocks;
-using WebApp.Controllers;
 using WebApp.Experimentations;
 using WebApp.Experimentations.Commands;
 using WebApp.Experimentations.Services;
