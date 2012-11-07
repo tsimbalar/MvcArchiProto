@@ -16,7 +16,7 @@ namespace WebApp.Controllers
 
         public ActionResult Index()
         {
-            var command = new FooCommand();
+            var command = new CapitalizeCommand();
             command.Blob = "bidule";
             return View();
         }

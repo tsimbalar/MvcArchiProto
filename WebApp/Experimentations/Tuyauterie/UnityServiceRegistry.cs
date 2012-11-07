@@ -1,6 +1,6 @@
 using Microsoft.Practices.Unity;
 
-namespace WebApp.Experimentations.NewFolder1
+namespace WebApp.Experimentations.Tuyauterie
 {
     public class UnityServiceRegistry : IServiceRegistry
     {

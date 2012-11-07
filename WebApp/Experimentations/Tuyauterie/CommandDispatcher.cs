@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WebApp.Experimentations.NewFolder1
+namespace WebApp.Experimentations.Tuyauterie
 {
     public class CommandDispatcher : ICommandDispatcher
     {

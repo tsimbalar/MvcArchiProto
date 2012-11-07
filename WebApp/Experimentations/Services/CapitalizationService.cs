@@ -2,11 +2,11 @@ using WebApp.Experimentations.Commands;
 
 namespace WebApp.Experimentations.Services
 {
-    public class CapitalizationService : IExecutableService<FooCommand, FooResponse>
+    public class CapitalizationService : IExecutableService<CapitalizeCommand, CapitalizeResponse>
     {
-        public FooResponse Execute(FooCommand request)
+        public CapitalizeResponse Execute(CapitalizeCommand request)
         {
-            return new FooResponse { CapitalizedBlob = request.Blob.ToUpperInvariant() };
+            return new CapitalizeResponse { CapitalizedBlob = request.Blob.ToUpperInvariant() };
         }
     }
 }
