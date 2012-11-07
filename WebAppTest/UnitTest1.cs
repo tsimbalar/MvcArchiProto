@@ -7,6 +7,7 @@ using Rhino.Mocks;
 using WebApp.Controllers;
 using WebApp.Experimentations;
 using WebApp.Experimentations.Commands;
+using WebApp.Experimentations.NewFolder1;
 using WebApp.Experimentations.Services;
 
 namespace WebAppTest
@@ -53,7 +54,7 @@ namespace WebAppTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof (ServiceNotFoundException))]
+        [ExpectedException(typeof (CommandDispatcherServiceNotFoundException))]
         public void dispatcher_with_Unity_not_found()
         {
             using (var container = new UnityContainer())

@@ -166,13 +166,18 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\FooController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Experimentations\CommandDispatcherException.cs" />
+    <Compile Include="Experimentations\ICommandDispatcher.cs" />
     <Compile Include="Experimentations\IExecutableService.cs" />
+    <Compile Include="Experimentations\IServiceRegistry.cs" />
+    <Compile Include="Experimentations\CommandDispatcherServiceNotFoundException.cs" />
     <Compile Include="Experimentations\Services\CapitalizationService.cs" />
     <Compile Include="Experimentations\Commands\Bar.cs" />
-    <Compile Include="Experimentations\CommandDispatcher.cs" />
+    <Compile Include="Experimentations\NewFolder1\CommandDispatcher.cs" />
     <Compile Include="Experimentations\Commands\Foo.cs" />
     <Compile Include="Experimentations\ICommand.cs" />
     <Compile Include="Experimentations\Services\LowerCaseService.cs" />
+    <Compile Include="Experimentations\NewFolder1\UnityServiceRegistry.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
