@@ -3,38 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Microsoft.Practices.Unity;
+using WebApp.Experimentations.Commands;
 
 namespace WebApp.Experimentations
 {
-    public class FooCommand : ICommand<FooResponse>
-    {
-        public string Blob { get; set; }
-    }
 
-    public class FooResponse
-    {
-        public string CapitalizedBlob { get; set; }
-    }
-
-    public class BarCommand : ICommand<BarResponse>
-    {
-        public string Blob { get; set; }
-    }
-
-    public class BarResponse
-    {
-        public string LowerCasedBlob { get; set; }
-    }
-
-    // just a "marker" interface ... a command tells us what its return value is
-    public interface ICommand<T>
-    {
-    }
-
-    // responsible for executing a command and returning its result
+    /// <summary>
+    /// responsible for executing a command and returning its result
+    /// </summary>
     public interface ICommandDispatcher
     {
-        TResponse Execute<TCommand,TResponse>(TCommand command) where TCommand : class,ICommand<TResponse>;
+        TResponse Execute<TCommand, TResponse>(TCommand command) where TCommand : class,ICommand<TResponse>;
     }
 
     public class CommandDispatcher : ICommandDispatcher
@@ -52,7 +31,7 @@ namespace WebApp.Experimentations
             if (command == null) throw new ArgumentNullException("command");
 
             var service = _registry.GetService<TCommand, TResponse>(command);
-            if(service == null)
+            if (service == null)
             {
                 throw new ServiceNotFoundException(string.Format("could not find service for command of type {0}",
                                                                  command.GetType()));
@@ -64,7 +43,8 @@ namespace WebApp.Experimentations
 
     public class ServiceNotFoundException : Exception
     {
-        public ServiceNotFoundException(string message) : base(message)
+        public ServiceNotFoundException(string message)
+            : base(message)
         {
         }
     }
@@ -88,7 +68,7 @@ namespace WebApp.Experimentations
         public IExecutableService<TCommand, TResponse> GetService<TCommand, TResponse>(TCommand command) where TCommand : ICommand<TResponse>
         {
             // whec if it has been registered ...
-            if(!_container.IsRegistered<IExecutableService<TCommand, TResponse>>())
+            if (!_container.IsRegistered<IExecutableService<TCommand, TResponse>>())
             {
                 return null;
             }
@@ -101,19 +81,6 @@ namespace WebApp.Experimentations
         public void Release<TCommand, TResponse>(IExecutableService<TCommand, TResponse> service) where TCommand : ICommand<TResponse>
         {
             _container.Teardown(service);
-        }
-    }
-
-    public interface IExecutableService<TRequest, TResponse>
-    {
-        TResponse Execute(TRequest request);
-    }
-
-    public class CapitalizationService : IExecutableService<FooCommand, FooResponse>
-    {
-        public FooResponse Execute(FooCommand request)
-        {
-            return new FooResponse {CapitalizedBlob = request.Blob.ToUpperInvariant()};
         }
     }
 }

@@ -6,6 +6,8 @@ using Ploeh.AutoFixture.AutoRhinoMock;
 using Rhino.Mocks;
 using WebApp.Controllers;
 using WebApp.Experimentations;
+using WebApp.Experimentations.Commands;
+using WebApp.Experimentations.Services;
 
 namespace WebAppTest
 {
@@ -65,7 +67,7 @@ namespace WebAppTest
 
                 var command = new BarCommand() {Blob = "ThisIsCamelCase"};
 
-                var response = commandDispatcher.Execute<BarCommand, BarResponse>(command);
+                commandDispatcher.Execute<BarCommand, BarResponse>(command);
             }
         }
     }
