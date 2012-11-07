@@ -11,7 +11,7 @@ namespace WebApp.Experimentations.Tuyauterie
             _container = container;
         }
 
-        public IExecutableService<TCommand, TResponse> GetService<TCommand, TResponse>(TCommand command) where TCommand : ICommand<TResponse>
+        public IExecutableService<TCommand, TResponse> GetService<TCommand, TResponse>()
         {
             // whec if it has been registered ...
             if (!_container.IsRegistered<IExecutableService<TCommand, TResponse>>())
@@ -24,7 +24,7 @@ namespace WebApp.Experimentations.Tuyauterie
 
         }
 
-        public void Release<TCommand, TResponse>(IExecutableService<TCommand, TResponse> service) where TCommand : ICommand<TResponse>
+        public void Release<TCommand, TResponse>(IExecutableService<TCommand, TResponse> service)
         {
             _container.Teardown(service);
         }

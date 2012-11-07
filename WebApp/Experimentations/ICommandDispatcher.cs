@@ -5,6 +5,6 @@ namespace WebApp.Experimentations
     /// </summary>
     public interface ICommandDispatcher
     {
-        TResponse Execute<TCommand, TResponse>(TCommand command) where TCommand : class,ICommand<TResponse>;
+        TResponse Execute<TCommand, TResponse>(ICommand<TCommand, TResponse> command);
     }
 }

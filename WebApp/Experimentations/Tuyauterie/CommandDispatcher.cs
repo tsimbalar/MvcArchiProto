@@ -12,18 +12,18 @@ namespace WebApp.Experimentations.Tuyauterie
             _registry = registry;
         }
 
-        public TResponse Execute<TCommand, TResponse>(TCommand command) where TCommand : class,ICommand<TResponse>
+        public TResponse Execute<TCommand, TResponse>(ICommand<TCommand, TResponse> command)
         {
             if (command == null) throw new ArgumentNullException("command");
 
-            var service = _registry.GetService<TCommand, TResponse>(command);
+            var service = _registry.GetService<TCommand, TResponse>();
             if (service == null)
             {
                 throw new CommandDispatcherServiceNotFoundException(string.Format("could not find service for command of type {0}",
                                                                  command.GetType()));
             }
 
-            return service.Execute(command);
+            return service.Execute(command.Self);
         }
     }
 }
