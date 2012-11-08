@@ -4,11 +4,13 @@ namespace WebApp.Experimentations.Tuyauterie
 {
     public class ServiceRegistryException : Exception
     {
-        public ServiceRegistryException(string message) : base(message)
+        public ServiceRegistryException(string message)
+            : base(message)
         {
         }
 
-        public ServiceRegistryException(string message, Exception innerException) : base(message, innerException)
+        public ServiceRegistryException(string message, Exception innerException)
+            : base(message, innerException)
         {
         }
     }
