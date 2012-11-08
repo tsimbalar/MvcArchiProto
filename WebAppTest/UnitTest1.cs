@@ -33,7 +33,7 @@ namespace WebAppTest
         }
 
         [TestMethod]
-        public void dispatcher_with_Unity()
+        public void dispatcher_with_Unity_Capitalize()
         {
             // Arrange 
             using (var container = new UnityContainer())
@@ -51,6 +51,28 @@ namespace WebAppTest
 
                 // Assert
                 Assert.AreEqual("THIS IS LOWERCASE", response.CapitalizedBlob);
+            }
+        }
+
+        [TestMethod]
+        public void dispatcher_with_Unity_LowerCasify()
+        {
+            // Arrange 
+            using (var container = new UnityContainer())
+            {
+                container.RegisterType<IExecutableService<LowerCasifyCommand, LowerCasifyResponse>, LowerCaseService>();
+
+                var serviceRegistry = new UnityServiceRegistry(container);
+                var commandDispatcher = new CommandDispatcher(serviceRegistry);
+
+
+                var command = new LowerCasifyCommand() { Blob = "this is UPPERCASE" };
+
+                // Act
+                var response = commandDispatcher.Execute(command);
+
+                // Assert
+                Assert.AreEqual("this is uppercase", response.LowerCasedBlob);
             }
         }
 
