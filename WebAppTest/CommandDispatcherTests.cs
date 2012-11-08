@@ -10,10 +10,10 @@ using WebApp.Experimentations.Tuyauterie;
 namespace WebAppTest
 {
     [TestClass]
-    public class UnitTest1
+    public class CommandDispatcherTests
     {
         [TestMethod]
-        public void dispatcher_with_FakeServiceRegistry()
+        public void CommandDispatcher_with_FakeServiceRegistry()
         {
             // Arrange
             var serviceRegistry = MockRepository.GenerateStrictMock<IServiceRegistry>();
@@ -33,7 +33,7 @@ namespace WebAppTest
         }
 
         [TestMethod]
-        public void dispatcher_with_Unity_Capitalize()
+        public void CommandDispatcher_with_Unity_Capitalize()
         {
             // Arrange 
             using (var container = new UnityContainer())
@@ -55,7 +55,7 @@ namespace WebAppTest
         }
 
         [TestMethod]
-        public void dispatcher_with_Unity_LowerCasify()
+        public void CommandDispatcher_with_Unity_LowerCasify()
         {
             // Arrange 
             using (var container = new UnityContainer())
@@ -78,7 +78,7 @@ namespace WebAppTest
 
         [TestMethod]
         [ExpectedException(typeof(CommandDispatcherServiceNotFoundException))]
-        public void dispatcher_with_Unity_not_found()
+        public void CommandDispatcher_with_Unity_not_found()
         {
             // Arrange
             using (var container = new UnityContainer())
@@ -96,7 +96,7 @@ namespace WebAppTest
 
         [TestMethod]
         [ExpectedException(typeof(CommandDispatcherInvalidTypeException))]
-        public void dispatcher_with_wrong_type_of_command()
+        public void CommandDispatcher_with_wrong_type_of_command()
         {
             // Arrange
             var serviceRegistry = MockRepository.GenerateStrictMock<IServiceRegistry>();
@@ -112,7 +112,10 @@ namespace WebAppTest
         }
     }
 
-
+    /// <summary>
+    /// This won't work because it is not something like MyCommand : ICommand[MyCommand, SomeResponse]
+    /// 
+    /// </summary>
     class CrappyCommand : ICommand<string, CrappyResponse>
     {
 

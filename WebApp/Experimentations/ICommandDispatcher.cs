@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+
 namespace WebApp.Experimentations
 {
     /// <summary>
@@ -6,5 +8,10 @@ namespace WebApp.Experimentations
     public interface ICommandDispatcher
     {
         TResponse Execute<TCommand, TResponse>(ICommand<TCommand, TResponse> command);
+    }
+
+    public interface IAsyncCommandDispatcher
+    {
+        Task<TResponse> Execute<TCommand, TResponse>(ICommand<TCommand, TResponse> command);
     }
 }

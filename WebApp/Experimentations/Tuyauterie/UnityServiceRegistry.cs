@@ -26,7 +26,27 @@ namespace WebApp.Experimentations.Tuyauterie
             }
         }
 
+        public IAsyncExecutableService<TCommand, TResponse> GetAsyncService<TCommand, TResponse>()
+        {
+            // check if it has been registered ...
+            try
+            {
+                var service = _container.Resolve<IAsyncExecutableService<TCommand, TResponse>>();
+
+                return service;
+            }
+            catch (ResolutionFailedException ex)
+            {
+                throw new ServiceNotFoundException(string.Format("Could not find IAsyncExecutableService service for command type {0} and response type {1}", typeof(TCommand), typeof(TResponse)), ex);
+            }
+        }
+
         public void Release<TCommand, TResponse>(IExecutableService<TCommand, TResponse> service)
+        {
+            _container.Teardown(service);
+        }
+
+        public void Release<TCommand, TResponse>(IAsyncExecutableService<TCommand, TResponse> service)
         {
             _container.Teardown(service);
         }
