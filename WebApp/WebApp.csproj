@@ -166,11 +166,10 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\FooController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Experimentations\CommandDispatcherException.cs" />
+    <Compile Include="Experimentations\CommandDispatcherExceptions.cs" />
     <Compile Include="Experimentations\ICommandDispatcher.cs" />
     <Compile Include="Experimentations\IExecutableService.cs" />
     <Compile Include="Experimentations\IServiceRegistry.cs" />
-    <Compile Include="Experimentations\CommandDispatcherServiceNotFoundException.cs" />
     <Compile Include="Experimentations\Services\CapitalizationService.cs" />
     <Compile Include="Experimentations\Commands\LowerCasify.cs" />
     <Compile Include="Experimentations\Tuyauterie\AsyncCommandDispatcher.cs" />
@@ -178,9 +177,8 @@
     <Compile Include="Experimentations\Commands\Capitalize.cs" />
     <Compile Include="Experimentations\ICommand.cs" />
     <Compile Include="Experimentations\Services\LowerCaseService.cs" />
-    <Compile Include="Experimentations\CommandDispatcherInvalidTypeException.cs" />
     <Compile Include="Experimentations\IAsyncExecutableService.cs" />
-    <Compile Include="Experimentations\Tuyauterie\ServiceNotFoundException.cs" />
+    <Compile Include="Experimentations\Tuyauterie\ServiceRegistryExceptions.cs" />
     <Compile Include="Experimentations\Tuyauterie\UnityServiceRegistry.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">

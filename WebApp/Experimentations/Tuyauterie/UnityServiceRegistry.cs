@@ -1,4 +1,3 @@
-using System;
 using Microsoft.Practices.Unity;
 
 namespace WebApp.Experimentations.Tuyauterie
@@ -49,17 +48,6 @@ namespace WebApp.Experimentations.Tuyauterie
         public void Release<TCommand, TResponse>(IAsyncExecutableService<TCommand, TResponse> service)
         {
             _container.Teardown(service);
-        }
-    }
-
-    public class ServiceRegistryException : Exception
-    {
-        public ServiceRegistryException(string message) : base(message)
-        {
-        }
-
-        public ServiceRegistryException(string message, Exception innerException) : base(message, innerException)
-        {
         }
     }
 }
