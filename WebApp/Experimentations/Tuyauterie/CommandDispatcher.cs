@@ -28,11 +28,14 @@ namespace WebApp.Experimentations.Tuyauterie
                     string.Format("Could not cast the command (of type {0}) to type {1}.\nFor this to work, the command passed to this method should be something like : public class FooCommand : ICommand<FooCommand, FooResponse>. The type is itself the first Type argument...", command.GetType(), typeof(TCommand)), ex);
             }
 
-            var service = _registry.GetService<TCommand, TResponse>();
-            if (service == null)
+            IExecutableService<TCommand, TResponse> service;
+            try
+            {
+                service = _registry.GetService<TCommand, TResponse>();
+            }catch(Exception ex)
             {
                 throw new CommandDispatcherServiceNotFoundException(string.Format("could not find service for command of type {0}",
-                                                                 typeof(TCommand)));
+                                                                 command.GetType()), ex);
             }
 
             

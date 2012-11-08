@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Practices.Unity;
 
 namespace WebApp.Experimentations.Tuyauterie
@@ -13,20 +14,32 @@ namespace WebApp.Experimentations.Tuyauterie
 
         public IExecutableService<TCommand, TResponse> GetService<TCommand, TResponse>()
         {
-            // whec if it has been registered ...
-            if (!_container.IsRegistered<IExecutableService<TCommand, TResponse>>())
+            // check if it has been registered ...
+            try
             {
-                return null;
+                var service = _container.Resolve<IExecutableService<TCommand, TResponse>>();
+
+                return service;
+            }catch(ResolutionFailedException ex)
+            {
+                throw new ServiceNotFoundException(string.Format("Could not find IExecutableService service for command type {0} and response type {1}", typeof(TCommand), typeof(TResponse)), ex);
             }
-            var service = _container.Resolve<IExecutableService<TCommand, TResponse>>();
-
-            return service;
-
         }
 
         public void Release<TCommand, TResponse>(IExecutableService<TCommand, TResponse> service)
         {
             _container.Teardown(service);
+        }
+    }
+
+    public class ServiceRegistryException : Exception
+    {
+        public ServiceRegistryException(string message) : base(message)
+        {
+        }
+
+        public ServiceRegistryException(string message, Exception innerException) : base(message, innerException)
+        {
         }
     }
 }
