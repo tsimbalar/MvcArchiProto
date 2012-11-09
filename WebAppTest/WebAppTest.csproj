@@ -59,6 +59,7 @@
     <Compile Include="AsyncCommandDispatcherTests.cs" />
     <Compile Include="CommandDispatcherTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnityRegistrationTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebApp\WebApp.csproj">
