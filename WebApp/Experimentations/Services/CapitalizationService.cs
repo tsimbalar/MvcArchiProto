@@ -1,16 +1,16 @@
 using System.Threading.Tasks;
-using WebApp.Experimentations.Commands;
+using WebApp.Experimentations.Requests;
 
 namespace WebApp.Experimentations.Services
 {
-    public class CapitalizationService : IExecutableService<CapitalizeCommand, CapitalizeResponse>, IAsyncExecutableService<CapitalizeCommand, CapitalizeResponse>
+    public class CapitalizationService : IExecutableService<CapitalizeRequest, CapitalizeResponse>, IAsyncExecutableService<CapitalizeRequest, CapitalizeResponse>
     {
-        public CapitalizeResponse Execute(CapitalizeCommand request)
+        public CapitalizeResponse Execute(CapitalizeRequest request)
         {
             return new CapitalizeResponse { CapitalizedBlob = request.Blob.ToUpperInvariant() };
         }
 
-        Task<CapitalizeResponse> IAsyncExecutableService<CapitalizeCommand, CapitalizeResponse>.Execute(CapitalizeCommand request)
+        Task<CapitalizeResponse> IAsyncExecutableService<CapitalizeRequest, CapitalizeResponse>.Execute(CapitalizeRequest request)
         {
             return Task.FromResult(this.Execute(request));
         }

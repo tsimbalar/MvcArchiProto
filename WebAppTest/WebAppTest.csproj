@@ -56,8 +56,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="AsyncCommandDispatcherTests.cs" />
-    <Compile Include="CommandDispatcherTests.cs" />
+    <Compile Include="AsyncRequestDispatcherTests.cs" />
+    <Compile Include="RequestDispatcherTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnityRegistrationTests.cs" />
   </ItemGroup>

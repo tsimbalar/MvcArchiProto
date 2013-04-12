@@ -5,19 +5,19 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.Practices.Unity;
 using WebApp.Experimentations;
-using WebApp.Experimentations.Commands;
+using WebApp.Experimentations.Requests;
 using WebApp.Experimentations.Tuyauterie;
 
 namespace WebApp.Controllers
 {
     public class FooController : Controller
     {
-        private ICommandDispatcher dispatcher;
+        private IRequestDispatcher dispatcher;
         public FooController()
         {
             var container = new UnityContainer();
             var registry = new UnityServiceRegistry(container);
-            dispatcher = new CommandDispatcher(registry);
+            dispatcher = new RequestDispatcher(registry);
         }
 
         //
@@ -25,10 +25,10 @@ namespace WebApp.Controllers
 
         public ActionResult Index()
         {
-            var command = new CapitalizeCommand();
-            command.Blob = "bidule";
+            var request = new CapitalizeRequest();
+            request.Blob = "bidule";
 
-            var response = dispatcher.Execute(command);
+            var response = dispatcher.Execute(request);
             return View();
         }
 

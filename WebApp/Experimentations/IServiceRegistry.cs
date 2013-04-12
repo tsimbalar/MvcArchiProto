@@ -3,11 +3,11 @@ namespace WebApp.Experimentations
 {
     public interface IServiceRegistry
     {
-        IExecutableService<TCommand, TResponse> GetService<TCommand, TResponse>();
-        IAsyncExecutableService<TCommand, TResponse> GetAsyncService<TCommand, TResponse>();
+        IExecutableService<TRequest, TResponse> GetService<TRequest, TResponse>();
+        IAsyncExecutableService<TRequest, TResponse> GetAsyncService<TRequest, TResponse>();
 
-        void Release<TCommand, TResponse>(IExecutableService<TCommand, TResponse> service);
-        void Release<TCommand, TResponse>(IAsyncExecutableService<TCommand, TResponse> service);
+        void Release<TRequest, TResponse>(IExecutableService<TRequest, TResponse> service);
+        void Release<TRequest, TResponse>(IAsyncExecutableService<TRequest, TResponse> service);
         
     }
 }

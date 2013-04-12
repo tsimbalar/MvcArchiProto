@@ -1,7 +1,7 @@
-namespace WebApp.Experimentations.Commands
+namespace WebApp.Experimentations.Requests
 {
 
-    public class CapitalizeCommand : ICommand<CapitalizeCommand, CapitalizeResponse>
+    public class CapitalizeRequest : IRequest<CapitalizeRequest, CapitalizeResponse>
     {
         public string Blob { get; set; }
     }
