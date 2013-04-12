@@ -167,7 +167,7 @@
     <Compile Include="Controllers\FooController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Experimentations\IAsyncRequestDispatcher.cs" />
-    <Compile Include="Experimentations\RequestProcessorExceptions.cs" />
+    <Compile Include="Experimentations\RequestDispatcherExceptions.cs" />
     <Compile Include="Experimentations\IRequestDispatcher.cs" />
     <Compile Include="Experimentations\IExecutableService.cs" />
     <Compile Include="Experimentations\IServiceRegistry.cs" />
