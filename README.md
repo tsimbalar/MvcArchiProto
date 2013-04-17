@@ -3,13 +3,13 @@ MvcArchiProto
 
 Just an experiment of architecture for loose coupling in an ASP.NET MVC App.
 
-The idea is that client code should just need to create an instance of a `Request object` (similar to a Command object, that is, it contains all the necessary information for an action to be executed) and pass it to a RequestDispatcher that would take care of : 
-- finding which implementation of a service to pass it to (using a ServiceRegistry, implemented thanks to an IoC Container, for instance)
+The idea is that client code should just need to create an instance of a [`Request`](https://github.com/tsimbalar/MvcArchiProto/blob/master/WebApp/Experimentations/IRequest.cs) object (similar to a Command object, that is, it contains all the necessary information for an action to be executed) and pass it to a [`IRequestDispatcher`](https://github.com/tsimbalar/MvcArchiProto/blob/master/WebApp/Experimentations/IRequestDispatcher.cs) that would take care of : 
+- finding which implementation of a service to pass it to (using a [`ServiceRegistry`](https://github.com/tsimbalar/MvcArchiProto/blob/master/WebApp/Experimentations/IServiceRegistry.cs), implemented [thanks to an IoC Container, for instance](https://github.com/tsimbalar/MvcArchiProto/blob/master/WebApp/Experimentations/Tuyauterie/UnityServiceRegistry.cs))
 - invoke `IExecutableService.Execute()` on that service, passing it the request
 - return the `Response` returned by the Execute() method.
 
 For the client code, it looks like this : 
-```
+```C#
 public ActionResult Index()
 {
     var request = new CapitalizeRequest(); // CapitalizeRequest : IRequest<CapitalizeRequest, CapitalizeResponse>
@@ -22,18 +22,18 @@ public ActionResult Index()
 ```
 
 
-What the "RequestDispatcher" does is to look inside our IoC container (in our case, Unity) if it finds any implementation of interface IExecutableServiceIExecutableService defined as :
-
+What the [`RequestDispatcher`](https://github.com/tsimbalar/MvcArchiProto/blob/master/WebApp/Experimentations/Tuyauterie/RequestDispatcher.cs) does is to look inside our IoC container (in our case, Unity) if it finds any implementation of interface [`IExecutableService`](https://github.com/tsimbalar/MvcArchiProto/blob/master/WebApp/Experimentations/IExecutableService.cs) defined as :
+```C#
 public interface IExecutableService
 {
-TResponse Execute(TRequest request);
+    TResponse Execute(TRequest request);
 }
-
+```
 ... and call that service with the request and return the Response.
 
-We also have an Async version : IAsyncExecutableService and corresponding Async version of RequestDispatcher : IAsyncRequestDispatcher
+We also have an Async version : [`IAsyncExecutableService`](https://github.com/tsimbalar/MvcArchiProto/blob/master/WebApp/Experimentations/IAsyncExecutableService.cs) and corresponding [Async version of `RequestDispatcher`](https://github.com/tsimbalar/MvcArchiProto/blob/master/WebApp/Experimentations/Tuyauterie/AsyncRequestDispatcher.cs) : [`IAsyncRequestDispatcher`](https://github.com/tsimbalar/MvcArchiProto/blob/master/WebApp/Experimentations/IAsyncRequestDispatcher.cs).
 
-It is not quite Command-Query Segregation, hence the names Response/Request.
+It is not quite Command-Query Segregation, hence the names **Response/Request**.
 
 
 See Also
